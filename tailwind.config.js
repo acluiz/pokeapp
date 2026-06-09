@@ -19,6 +19,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        content: {
+          label: '#808080',
+          body: '#505050',
+          white: '#FFFFFF',
+          'white-dim': '#ffffffcc',
+        },
+        surface: '#FCFCFC',
+        border: {
+          subtle: '#E7E7E7',
+          accent: '#E2BA00',
+        },
         primary: {
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',
           50: 'rgb(var(--color-primary-50)/<alpha-value>)',
@@ -175,8 +186,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: undefined,
-        body: undefined,
+        heading: ['LexendDeca'],
+        body: ['LexendDeca'],
         mono: undefined,
         jakarta: ['var(--font-plus-jakarta-sans)'],
         roboto: ['var(--font-roboto)'],

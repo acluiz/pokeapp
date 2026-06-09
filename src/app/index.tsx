@@ -10,7 +10,7 @@ import { Link } from "expo-router";
 export default function App() {
   return (
     <SafeAreaView className="flex-1">
-      <View className="px-4 py-3 border-b border-gray-200">
+      <View className="py-3 px-4 border-b border-gray-200 bg-content-white">
         <Image
           width={165}
           height={38}
@@ -19,26 +19,28 @@ export default function App() {
         />
       </View>
 
-      <View className="flex-row gap-4 px-4 mt-4">
-        <Input size="xl" variant="outline" className="flex-1">
-          <InputSlot className="pl-3">
-            <InputIcon as={SearchIcon} />
-          </InputSlot>
+      <View className="px-4">
+        <View className="flex-row gap-4 mt-4">
+          <Input size="xl" variant="outline" className="flex-1">
+            <InputSlot className="pl-3">
+              <InputIcon as={SearchIcon} />
+            </InputSlot>
 
-          <InputField placeholder="Buscar por nome" />
-        </Input>
+            <InputField placeholder="Buscar por nome" />
+          </Input>
 
-        <Button variant="solid" size="xl" action="primary">
-          <ButtonIcon as={SearchIcon} />
-        </Button>
-      </View>
+          <Button variant="solid" size="xl" action="primary">
+            <ButtonIcon as={SearchIcon} />
+          </Button>
+        </View>
 
-      <View>
-        <Link href="/details">
-          <View>
-            <Text>details</Text>
-          </View>
-        </Link>
+        <View>
+          <Link href="/details">
+            <View>
+              <Text>details</Text>
+            </View>
+          </Link>
+        </View>
       </View>
     </SafeAreaView>
   );

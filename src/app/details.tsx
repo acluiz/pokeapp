@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function Details() {
   return (
     <SafeAreaView className="flex-1">
-      <View className="px-4 py-3 border-b border-gray-200">
+      <View className="px-4 py-3 border-b border-gray-200 bg-content-white">
         <Image
           width={165}
           height={38}
