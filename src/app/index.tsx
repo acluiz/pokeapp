@@ -1,9 +1,11 @@
-import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Button, ButtonIcon } from "@/components/ui/button";
 import { SearchIcon } from "@/components/ui/icon";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Text } from "@/components/ui/text";
+import { Link } from "expo-router";
 
 export default function App() {
   return (
@@ -29,6 +31,14 @@ export default function App() {
         <Button variant="solid" size="xl" action="primary">
           <ButtonIcon as={SearchIcon} />
         </Button>
+      </View>
+
+      <View>
+        <Link href="/details">
+          <View>
+            <Text>details</Text>
+          </View>
+        </Link>
       </View>
     </SafeAreaView>
   );
