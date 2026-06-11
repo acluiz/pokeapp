@@ -30,6 +30,11 @@ module.exports = {
           subtle: '#E7E7E7',
           accent: '#E2BA00',
         },
+        method: {
+          mt: '#3E6A8D',
+          level: '#356C37',
+          tutor: '#8C1F44',
+        },
         primary: {
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',
           50: 'rgb(var(--color-primary-50)/<alpha-value>)',
