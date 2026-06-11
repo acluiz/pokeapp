@@ -5,13 +5,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeftIcon, Icon } from "@/components/ui/icon";
-import { Table, TableBody, TableData, TableRow } from "@/components/ui/table";
 import { Text } from "@/components/ui/text";
-
-import { Stat } from "./components/Stat";
 
 import { COLORS } from "./constants";
 
+import { InfosTable } from "./components/InfosTable";
+import { Stats } from "./components/Stats";
 import { IPokemon } from "./types";
 
 export default function MovementDetails() {
@@ -54,11 +53,7 @@ export default function MovementDetails() {
         </View>
 
         <View className="p-4 bg-surface rounded-tl-3xl rounded-tr-3xl flex-1">
-          <View className="flex-row gap-3 mt-4">
-            <Stat value="40" label="PODER" />
-            <Stat value="100%" label="PRECISÃO" />
-            <Stat value="30" label="PP" />
-          </View>
+          <Stats />
 
           <View className="mt-4">
             <Text className="text-base text-content-label font-semibold">
@@ -70,36 +65,7 @@ export default function MovementDetails() {
             </Text>
           </View>
 
-          <Table className="mt-4 w-full rounded-xl border border-border-subtle bg-content-white overflow-hidden">
-            <TableBody>
-              <TableRow className="border-0 bg-transparent">
-                <TableData className="text-sm text-content-label font-semibold px-4 py-3">
-                  Categoria
-                </TableData>
-                <TableData className="text-sm text-content-label px-4 py-3 text-right">
-                  Especial
-                </TableData>
-              </TableRow>
-
-              <TableRow className="border-t border-border-subtle bg-transparent">
-                <TableData className="text-sm text-content-label font-semibold px-4 py-3">
-                  Alvo
-                </TableData>
-                <TableData className="text-sm text-content-label px-4 py-3 text-right">
-                  Pokémon selecionado
-                </TableData>
-              </TableRow>
-
-              <TableRow className="border-t border-border-subtle border-b-0 bg-transparent">
-                <TableData className="text-sm text-content-label font-semibold px-4 py-3">
-                  Geração
-                </TableData>
-                <TableData className="text-sm text-content-label px-4 py-3 text-right">
-                  I
-                </TableData>
-              </TableRow>
-            </TableBody>
-          </Table>
+          <InfosTable />
         </View>
       </LinearGradient>
     </SafeAreaView>
