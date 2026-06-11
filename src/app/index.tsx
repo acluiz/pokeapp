@@ -35,7 +35,7 @@ export default function App() {
         </View>
 
         <View>
-          <Link href="/details">
+          <Link href="/pokemon-details">
             <View>
               <Text>details</Text>
             </View>
