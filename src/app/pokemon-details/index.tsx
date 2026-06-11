@@ -3,6 +3,7 @@ import { Link } from "expo-router";
 import { Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { Badge } from "@/components/ui/badge";
 import { ArrowLeftIcon, ArrowRightIcon, Icon } from "@/components/ui/icon";
 import { Text } from "@/components/ui/text";
 
@@ -42,9 +43,11 @@ export default function Details() {
             Pikachu
           </Text>
 
-          <View className="mt-3 self-start bg-white/20 px-4 py-1 rounded-full">
-            <Text className="text-content-white text-sm">Elétrico</Text>
-          </View>
+          <Badge
+            label="Elétrico"
+            className="mt-3 bg-white/20 px-4"
+            textClassName="text-sm"
+          />
         </View>
 
         <View className="p-4 bg-surface rounded-tl-3xl rounded-tr-3xl flex-1">
@@ -59,7 +62,11 @@ export default function Details() {
               const type = MOVEMENT_TYPES[movement.method];
 
               return (
-                <Link key={movement.name} href="/movement-details" className="w-full">
+                <Link
+                  key={movement.name}
+                  href="/movement-details"
+                  className="w-full"
+                >
                   <View
                     className={`flex-row items-center bg-content-white rounded-xl border-x-4 px-4 py-3 ${type.card}`}
                   >
@@ -68,13 +75,11 @@ export default function Details() {
                         {movement.name}
                       </Text>
 
-                      <View
-                        className={`mt-2 self-start px-3 py-1 rounded-full ${type.badge}`}
-                      >
-                        <Text className="text-xs text-content-white">
-                          {type.label}
-                        </Text>
-                      </View>
+                      <Badge
+                        label={type.label}
+                        className={`mt-2 ${type.badge}`}
+                        textClassName="text-sm"
+                      />
                     </View>
 
                     <Icon

@@ -3,7 +3,9 @@ import { Link } from "expo-router";
 import { Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { Badge } from "@/components/ui/badge";
 import { ArrowLeftIcon, Icon } from "@/components/ui/icon";
+import { Table, TableBody, TableData, TableRow } from "@/components/ui/table";
 import { Text } from "@/components/ui/text";
 
 import { Stat } from "./components/Stat";
@@ -44,9 +46,11 @@ export default function MovementDetails() {
             Thunder-shock
           </Text>
 
-          <View className="mt-3 self-start bg-white/20 px-4 py-1 rounded-full">
-            <Text className="text-content-white text-sm">Elétrico</Text>
-          </View>
+          <Badge
+            label="Elétrico"
+            className="mt-3 bg-white/20 px-4"
+            textClassName="text-sm"
+          />
         </View>
 
         <View className="p-4 bg-surface rounded-tl-3xl rounded-tr-3xl flex-1">
@@ -66,30 +70,36 @@ export default function MovementDetails() {
             </Text>
           </View>
 
-          <View className="mt-4 rounded-xl border border-border-subtle bg-content-white overflow-visible">
-            <View className="flex-row justify-between px-4 py-3">
-              <Text className="text-sm text-content-label font-semibold">
-                Categoria
-              </Text>
-              <Text className="text-sm text-content-label">Especial</Text>
-            </View>
+          <Table className="mt-4 w-full rounded-xl border border-border-subtle bg-content-white overflow-hidden">
+            <TableBody>
+              <TableRow className="border-0 bg-transparent">
+                <TableData className="text-sm text-content-label font-semibold px-4 py-3">
+                  Categoria
+                </TableData>
+                <TableData className="text-sm text-content-label px-4 py-3 text-right">
+                  Especial
+                </TableData>
+              </TableRow>
 
-            <View className="flex-row justify-between px-4 py-3 border-t border-border-subtle">
-              <Text className="text-sm text-content-label font-semibold">
-                Alvo
-              </Text>
-              <Text className="text-sm text-content-label">
-                Pokémon selecionado
-              </Text>
-            </View>
+              <TableRow className="border-t border-border-subtle bg-transparent">
+                <TableData className="text-sm text-content-label font-semibold px-4 py-3">
+                  Alvo
+                </TableData>
+                <TableData className="text-sm text-content-label px-4 py-3 text-right">
+                  Pokémon selecionado
+                </TableData>
+              </TableRow>
 
-            <View className="flex-row justify-between px-4 py-3 border-t border-border-subtle">
-              <Text className="text-sm text-content-label font-semibold">
-                Geração
-              </Text>
-              <Text className="text-sm text-content-label">I</Text>
-            </View>
-          </View>
+              <TableRow className="border-t border-border-subtle border-b-0 bg-transparent">
+                <TableData className="text-sm text-content-label font-semibold px-4 py-3">
+                  Geração
+                </TableData>
+                <TableData className="text-sm text-content-label px-4 py-3 text-right">
+                  I
+                </TableData>
+              </TableRow>
+            </TableBody>
+          </Table>
         </View>
       </LinearGradient>
     </SafeAreaView>
