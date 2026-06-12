@@ -19,7 +19,7 @@ const IMAGE = require("@assets/images/pikachu.png");
 
 export default function App() {
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-white">
       <View className="py-3 px-4 border-b border-gray-200 bg-content-white">
         <Image
           width={165}
