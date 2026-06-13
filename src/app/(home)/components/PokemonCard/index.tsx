@@ -7,11 +7,11 @@ import type { PokemonCardProps } from "./types";
 
 const FALLBACK_COLORS: [string, string] = ["#9FA19F", "#B5B5A5"];
 
-export function PokemonCard({ id, name, type, image, ...props }: PokemonCardProps) {
+export function PokemonCard({ id, name, type, image }: PokemonCardProps) {
   const colors = POKEMON_TYPE_COLORS[type.toLowerCase()] ?? FALLBACK_COLORS;
 
   return (
-    <Pressable className="rounded-2xl overflow-hidden h-[130px]" {...props}>
+    <Pressable className="rounded-2xl overflow-hidden h-[130px]">
       <LinearGradient
         colors={colors}
         start={{ x: 0, y: 0 }}
@@ -24,7 +24,7 @@ export function PokemonCard({ id, name, type, image, ...props }: PokemonCardProp
         }}
       >
         <Text className="text-white font-bold text-base">{name}</Text>
-        <Text className="text-white/70 text-xs">{id}</Text>
+        <Text className="text-white/70 text-xs">#{id.padStart(4, "0")}</Text>
 
         <Image
           source={image}

@@ -1,23 +1,26 @@
 import { Link } from "expo-router";
-import { FlatList, Image, View } from "react-native";
+import { FlatList, Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { Button, ButtonIcon } from "@/components/ui/button";
+import {
+  Button,
+  ButtonIcon,
+  ButtonSpinner,
+  ButtonText,
+} from "@/components/ui/button";
 import { SearchIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 
+import { Error } from "@/components/custom/Error";
+
 import { PokemonCard } from "./components/PokemonCard";
 
-const POKEMON_LIST = [
-  { name: "Pikachu", id: "#025", type: "electric" },
-  { name: "Pikachu", id: "#026", type: "water" },
-  { name: "Pikachu", id: "#027", type: "fire" },
-  { name: "Pikachu", id: "#028", type: "fairy" },
-];
-
-const IMAGE = require("@assets/images/pikachu.png");
+import { usePokemonList } from "./usePokemonList";
 
 export default function App() {
+  const { pokemons, error, isLoading, getParsedDetails, getPokemons } =
+    usePokemonList();
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="py-3 px-4 border-b border-gray-200 bg-content-white">
@@ -29,8 +32,8 @@ export default function App() {
         />
       </View>
 
-      <View className="mt-4 flex-1 px-4">
-        <View className="flex-row gap-4 mt-4 mb-4">
+      <View className="flex-1 mt-4 px-4">
+        <View className="flex-row gap-4">
           <Input size="xl" variant="outline" className="flex-1">
             <InputSlot className="pl-3">
               <InputIcon as={SearchIcon} />
@@ -44,26 +47,61 @@ export default function App() {
           </Button>
         </View>
 
-        <FlatList
-          className="mt-4"
-          numColumns={2}
-          data={POKEMON_LIST}
-          keyExtractor={(item) => item.id}
-          columnWrapperStyle={{ gap: 16 }}
-          contentContainerStyle={{ gap: 16 }}
-          renderItem={({ item }) => (
-            <View className="flex-1">
-              <Link href="/pokemon-details" asChild>
-                <PokemonCard
-                  name={item.name}
-                  id={item.id}
-                  type={item.type}
-                  image={IMAGE}
-                />
-              </Link>
-            </View>
-          )}
-        />
+        {isLoading && pokemons.length === 0 && (
+          <View>
+            <Text>loading...</Text>
+          </View>
+        )}
+
+        {!isLoading && pokemons.length === 0 && (
+          <Error
+            title="Nenhum Pokémon encontrado."
+            description="Parece que esse Pokémon está escondido em outra região."
+          />
+        )}
+
+        {pokemons.length > 0 && (
+          <FlatList
+            className="mt-4"
+            numColumns={2}
+            data={pokemons}
+            keyExtractor={(item) => item.url}
+            columnWrapperStyle={{ gap: 16 }}
+            contentContainerStyle={{ gap: 16 }}
+            ListFooterComponent={
+              <Button
+                variant="solid"
+                action="primary"
+                className="mt-4"
+                onPress={getPokemons}
+              >
+                {isLoading && <ButtonSpinner />}
+                {!isLoading && <ButtonText>Carregar mais</ButtonText>}
+              </Button>
+            }
+            renderItem={({ item }) => {
+              const { id, type } = getParsedDetails(item);
+
+              return (
+                <View className="flex-1">
+                  <Link
+                    href={{ pathname: "/pokemon-details", params: { id } }}
+                    asChild
+                  >
+                    <PokemonCard
+                      name={item.name}
+                      type={type}
+                      id={id}
+                      image={{
+                        uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+                      }}
+                    />
+                  </Link>
+                </View>
+              );
+            }}
+          />
+        )}
       </View>
     </SafeAreaView>
   );

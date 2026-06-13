@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 import Svg, { Circle, Line, Path } from "react-native-svg";
+import { IErrorProps } from "./types";
 
 function PokeballIcon() {
   return (
@@ -21,17 +22,17 @@ function PokeballIcon() {
   );
 }
 
-export function EmptyList() {
+export function Error({ title, description }: IErrorProps) {
   return (
     <View className="flex-1 items-center justify-center p-16">
       <PokeballIcon />
 
       <Text className="font-bold text-base text-center mt-4 text-content-label">
-        Nenhum Pokémon encontrado.
+        {title}
       </Text>
 
       <Text className="text-sm text-center mt-2 text-content-body">
-        Parece que esse Pokémon está escondido em outra região.
+        {description}
       </Text>
     </View>
   );
