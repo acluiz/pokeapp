@@ -29,7 +29,7 @@ export function PokemonCard({ id, name, type, image }: PokemonCardProps) {
         <Image
           source={image}
           resizeMode="contain"
-          className="absolute right-0 bottom-0 w-[70px] h-[70px]"
+          className="absolute right-1 bottom-1 w-[80px] h-[80px]"
         />
       </LinearGradient>
     </Pressable>

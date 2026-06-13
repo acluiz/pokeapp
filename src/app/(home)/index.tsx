@@ -93,7 +93,7 @@ export default function App() {
                       type={type}
                       id={id}
                       image={{
-                        uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+                        uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
                       }}
                     />
                   </Link>
