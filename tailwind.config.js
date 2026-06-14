@@ -34,6 +34,13 @@ module.exports = {
           mt: '#3E6A8D',
           level: '#356C37',
           tutor: '#8C1F44',
+          egg: '#A0522D',
+          stadium: '#1E7B6B',
+          lightball: '#8B7500',
+          purification: '#6B2FA0',
+          shadow: '#2F3A6B',
+          formchange: '#1A6B7D',
+          zygarde: '#4A7D1A',
         },
         primary: {
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',

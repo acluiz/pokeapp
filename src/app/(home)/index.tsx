@@ -85,8 +85,11 @@ export default function App() {
               return (
                 <View className="flex-1">
                   <Link
-                    href={{ pathname: "/pokemon-details", params: { id } }}
                     asChild
+                    href={{
+                      pathname: "/pokemon-details",
+                      params: { id },
+                    }}
                   >
                     <PokemonCard
                       name={item.name}
