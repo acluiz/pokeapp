@@ -71,10 +71,17 @@ export default function Details() {
 
             <ScrollView className="mt-4" contentContainerStyle={{ gap: 12 }}>
               {pokemon.moves.map((item) => {
-                const { name, type, label } = getMoveType(item);
+                const { id, name, type, label } = getMoveType(item);
 
                 return (
-                  <Link key={name} href="/movement-details" className="w-full">
+                  <Link
+                    key={name}
+                    href={{
+                      pathname: "/movement-details",
+                      params: { id },
+                    }}
+                    className="w-full"
+                  >
                     <View
                       className={`flex-row items-center bg-content-white rounded-xl border-x-4 px-4 py-3 ${type.card}`}
                     >

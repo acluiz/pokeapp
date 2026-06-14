@@ -1,6 +1,16 @@
 import { Table, TableBody, TableData, TableRow } from "@/components/ui/table";
 
-export function InfosTable() {
+interface InfosTableProps {
+  damageClass: string;
+  target: string;
+  generation: string;
+}
+
+export function InfosTable({
+  damageClass,
+  target,
+  generation,
+}: InfosTableProps) {
   return (
     <Table className="mt-4 w-full rounded-xl border border-border-subtle bg-content-white overflow-hidden">
       <TableBody>
@@ -9,7 +19,7 @@ export function InfosTable() {
             Categoria
           </TableData>
           <TableData className="text-sm text-content-label px-4 py-3 text-right">
-            Especial
+            {damageClass}
           </TableData>
         </TableRow>
 
@@ -18,7 +28,7 @@ export function InfosTable() {
             Alvo
           </TableData>
           <TableData className="text-sm text-content-label px-4 py-3 text-right">
-            Pokémon selecionado
+            {target}
           </TableData>
         </TableRow>
 
@@ -27,7 +37,7 @@ export function InfosTable() {
             Geração
           </TableData>
           <TableData className="text-sm text-content-label px-4 py-3 text-right">
-            I
+            {generation}
           </TableData>
         </TableRow>
       </TableBody>

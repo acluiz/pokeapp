@@ -50,7 +50,11 @@ export function usePokemonDetails() {
     const levelLabel = `${type.label} ${moveDetails.level_learned_at}`;
     const label = isLevelMethod ? levelLabel : type.label;
 
+    const urlParts = item.move.url.split("/");
+    const id = urlParts[urlParts.length - 2];
+
     return {
+      id,
       type,
       name: item.move.name,
       label: label,
