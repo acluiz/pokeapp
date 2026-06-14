@@ -48,23 +48,23 @@ export default function MovementDetails() {
           <View className="px-4 pt-6 pb-8 overflow-hidden">
             <Link href="/" className="mb-4">
               <Icon
+                size="xl"
                 as={ArrowLeftIcon}
                 className="text-content-white"
-                size="xl"
               />
             </Link>
 
             <Text className="text-content-white-dim text-sm">
               #{movement.id.toString().padStart(4, "0")}
             </Text>
-            <Text className="mt-1 text-content-white text-3xl font-bold">
+            <Text className="mt-1 text-content-white text-3xl font-bold capitalize">
               {movement.name}
             </Text>
 
             <Badge
               label={movement.type.name}
               className="mt-3 bg-white/20 px-4"
-              textClassName="text-sm"
+              textClassName="capitalize"
             />
           </View>
 

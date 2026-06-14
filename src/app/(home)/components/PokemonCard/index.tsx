@@ -7,7 +7,13 @@ import type { PokemonCardProps } from "./types";
 
 const FALLBACK_COLORS: [string, string] = ["#9FA19F", "#B5B5A5"];
 
-export function PokemonCard({ id, name, type, image, ...rest }: PokemonCardProps) {
+export function PokemonCard({
+  id,
+  name,
+  type,
+  image,
+  ...rest
+}: PokemonCardProps) {
   const colors = POKEMON_TYPE_COLORS[type.toLowerCase()] ?? FALLBACK_COLORS;
 
   return (
@@ -23,7 +29,9 @@ export function PokemonCard({ id, name, type, image, ...rest }: PokemonCardProps
           justifyContent: "space-between",
         }}
       >
-        <Text className="text-white font-bold text-base">{name}</Text>
+        <Text className="text-white font-bold text-base capitalize">
+          {name}
+        </Text>
         <Text className="text-white/70 text-xs">#{id.padStart(4, "0")}</Text>
 
         <Image

@@ -27,6 +27,7 @@ export function useMoveDetails() {
   const getMove = async () => {
     try {
       const movement = await get<IMove>(`/move/${id}`);
+
       setState({ movement, isLoading: false, error: null });
     } catch (err) {
       setState({

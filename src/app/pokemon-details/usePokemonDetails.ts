@@ -29,7 +29,7 @@ export function usePokemonDetails() {
   const getPokemon = async () => {
     try {
       const pokemon = await get<IPokemon>(`/pokemon/${id}`);
-      console.log(pokemon);
+
       setState({ pokemon, isLoading: false, error: null });
     } catch (err) {
       setState({

@@ -42,23 +42,23 @@ export default function Details() {
           <View className="px-4 pt-6 pb-8 overflow-hidden">
             <Link href="/" className="mb-4">
               <Icon
+                size="xl"
                 as={ArrowLeftIcon}
                 className="text-content-white"
-                size="xl"
               />
             </Link>
 
             <Text className="text-content-white-dim text-sm">
               #{pokemon.id.toString().padStart(4, "0")}
             </Text>
-            <Text className="mt-1 text-content-white text-3xl font-bold">
+            <Text className="mt-1 text-content-white text-3xl font-bold capitalize">
               {pokemon.name}
             </Text>
 
             <Badge
               label={typeName}
               className="mt-3 bg-white/20 px-4"
-              textClassName="text-sm"
+              textClassName="capitalize"
             />
           </View>
 
@@ -86,15 +86,11 @@ export default function Details() {
                       className={`flex-row items-center bg-content-white rounded-xl border-x-4 px-4 py-3 ${type.card}`}
                     >
                       <View className="flex-1">
-                        <Text className="text-base font-bold text-content-body">
+                        <Text className="text-base font-bold text-content-body capitalize">
                           {name}
                         </Text>
 
-                        <Badge
-                          label={label}
-                          className={`mt-2 ${type.badge}`}
-                          textClassName="text-sm"
-                        />
+                        <Badge label={label} className={`mt-2 ${type.badge}`} />
                       </View>
 
                       <Icon

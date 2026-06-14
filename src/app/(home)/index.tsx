@@ -92,9 +92,9 @@ export default function App() {
                     }}
                   >
                     <PokemonCard
-                      name={item.name}
-                      type={type}
                       id={id}
+                      type={type}
+                      name={item.name}
                       image={{
                         uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
                       }}
