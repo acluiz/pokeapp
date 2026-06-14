@@ -19,6 +19,7 @@ export interface IPokemon {
     move: { name: string; url: string };
     version_group_details: {
       move_learn_method: { name: MoveLearnMethod };
+      level_learned_at: number;
     }[];
   }[];
   sprites: {

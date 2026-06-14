@@ -8,13 +8,13 @@ import { ArrowLeftIcon, ArrowRightIcon, Icon } from "@/components/ui/icon";
 import { Text } from "@/components/ui/text";
 
 import { POKEMON_TYPE_COLORS } from "@/constants/pokemon-types";
-import { MOVEMENT_TYPES } from "./constants";
+
 import { usePokemonDetails } from "./usePokemonDetails";
 
 const FALLBACK_COLORS: [string, string] = ["#9FA19F", "#B5B5A5"];
 
 export default function Details() {
-  const { pokemon, isLoading } = usePokemonDetails();
+  const { pokemon, isLoading, getMoveType } = usePokemonDetails();
 
   const typeName = pokemon?.types?.[0]?.type?.name ?? "--";
   const colors = POKEMON_TYPE_COLORS[typeName.toLowerCase()] ?? FALLBACK_COLORS;
@@ -71,27 +71,20 @@ export default function Details() {
 
             <ScrollView className="mt-4" contentContainerStyle={{ gap: 12 }}>
               {pokemon.moves.map((item) => {
-                const method =
-                  item.version_group_details[0]?.move_learn_method.name;
-
-                const type = MOVEMENT_TYPES[method];
+                const { name, type, label } = getMoveType(item);
 
                 return (
-                  <Link
-                    key={item.move.name}
-                    href="/movement-details"
-                    className="w-full"
-                  >
+                  <Link key={name} href="/movement-details" className="w-full">
                     <View
                       className={`flex-row items-center bg-content-white rounded-xl border-x-4 px-4 py-3 ${type.card}`}
                     >
                       <View className="flex-1">
                         <Text className="text-base font-bold text-content-body">
-                          {item.move.name}
+                          {name}
                         </Text>
 
                         <Badge
-                          label={type.label}
+                          label={label}
                           className={`mt-2 ${type.badge}`}
                           textClassName="text-sm"
                         />

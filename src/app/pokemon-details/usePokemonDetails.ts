@@ -1,8 +1,9 @@
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 
-import { useLocalSearchParams, useRouter } from "expo-router";
-
 import { get } from "@/services/api";
+
+import { MOVEMENT_TYPES } from "./constants";
 
 import { IPokemon, PokemonDetailsState } from "./types";
 
@@ -39,5 +40,22 @@ export function usePokemonDetails() {
     }
   };
 
-  return { ...state };
+  const getMoveType = (item: IPokemon["moves"][number]) => {
+    const moveDetails = item.version_group_details[0];
+    const method = moveDetails?.move_learn_method.name;
+
+    const type = MOVEMENT_TYPES[method];
+
+    const isLevelMethod = type.id === "level-up";
+    const levelLabel = `${type.label} ${moveDetails.level_learned_at}`;
+    const label = isLevelMethod ? levelLabel : type.label;
+
+    return {
+      type,
+      name: item.move.name,
+      label: label,
+    };
+  };
+
+  return { ...state, getMoveType };
 }
