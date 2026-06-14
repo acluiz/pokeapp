@@ -21,7 +21,7 @@ export default function MovementDetails() {
 
   const typeName = movement?.type?.name ?? "electric";
   const colors = POKEMON_TYPE_COLORS[typeName.toLowerCase()] ?? FALLBACK_COLORS;
-  const effects = movement?.effect_entries.find(
+  const effects = movement?.flavor_text_entries.find(
     (e) => e.language.name === "en",
   );
 
@@ -80,7 +80,7 @@ export default function MovementDetails() {
                 Descrição
               </Text>
               <Text className="text-sm mt-1 text-content-body">
-                {effects?.short_effect || "--"}
+                {effects?.flavor_text.replaceAll("\n", " ") || "--"}
               </Text>
             </View>
 
