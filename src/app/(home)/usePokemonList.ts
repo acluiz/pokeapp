@@ -4,6 +4,7 @@ import { POKEMON_TYPE_COLORS } from "@/constants/pokemon-types";
 import { get } from "@/services/api";
 
 import {
+  PokemonDetail,
   PokemonListItem,
   PokemonListResponse,
   PokemonListState,
@@ -11,17 +12,20 @@ import {
 
 const POKEMON_TYPES = Object.keys(POKEMON_TYPE_COLORS);
 
-const LIMIT = 20;
+export const LIMIT = 20;
 
 export function usePokemonList() {
   const [offset, setOffset] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonListItem[]>([]);
+  const [search, setSearch] = useState("");
 
   const [state, setState] = useState<PokemonListState>({
     data: { count: 0, previous: "", next: "", results: [] },
     isLoading: true,
     error: null,
   });
+
+  const isLastPage = state.data?.next === null;
 
   useEffect(() => {
     getPokemons();
@@ -51,5 +55,40 @@ export function usePokemonList() {
     return { id, type };
   };
 
-  return { pokemons, ...state, getParsedDetails, getPokemons };
+  const onSearch = async () => {
+    const normalized = search.trim().toLowerCase();
+    if (!normalized) {
+      await getPokemons();
+      return;
+    }
+
+    setState((prev) => ({ ...prev, isLoading: true, error: null }));
+
+    try {
+      const data = await get<PokemonDetail>(`/pokemon/${normalized}`);
+
+      const item: PokemonListItem = {
+        name: data.name,
+        url: `https://pokeapi.co/api/v2/pokemon/${data.id}/`,
+      };
+
+      setPokemons([item]);
+      setState({ data: null, isLoading: false, error: null });
+    } catch (err) {
+      setOffset(0);
+      setPokemons([]);
+      setState({ data: null, isLoading: false, error: (err as Error).message });
+    }
+  };
+
+  return {
+    search,
+    pokemons,
+    ...state,
+    isLastPage,
+    getParsedDetails,
+    getPokemons,
+    setSearch,
+    onSearch,
+  };
 }

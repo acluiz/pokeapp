@@ -10,6 +10,11 @@ export type PokemonListResponse = {
   results: PokemonListItem[];
 };
 
+export type PokemonDetail = {
+  id: number;
+  name: string;
+};
+
 export type PokemonListState = {
   data: PokemonListResponse | null;
   isLoading: boolean;

@@ -8,7 +8,7 @@ import {
   ButtonSpinner,
   ButtonText,
 } from "@/components/ui/button";
-import { SearchIcon } from "@/components/ui/icon";
+import { CloseIcon, SearchIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 
 import { Error } from "@/components/custom/Error";
@@ -18,8 +18,17 @@ import { PokemonCard } from "./components/PokemonCard";
 import { usePokemonList } from "./usePokemonList";
 
 export default function App() {
-  const { pokemons, error, isLoading, getParsedDetails, getPokemons } =
-    usePokemonList();
+  const {
+    search,
+    pokemons,
+    error,
+    isLoading,
+    isLastPage,
+    getParsedDetails,
+    getPokemons,
+    setSearch,
+    onSearch,
+  } = usePokemonList();
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -39,11 +48,22 @@ export default function App() {
               <InputIcon as={SearchIcon} />
             </InputSlot>
 
-            <InputField placeholder="Buscar por nome" />
+            <InputField
+              placeholder="Buscar por nome"
+              value={search}
+              onChangeText={setSearch}
+            />
+
+            {search.length > 0 && (
+              <InputSlot className="pr-3" onPress={() => setSearch("")}>
+                <InputIcon as={CloseIcon} />
+              </InputSlot>
+            )}
           </Input>
 
-          <Button variant="solid" size="xl" action="primary">
-            <ButtonIcon as={SearchIcon} />
+          <Button variant="solid" size="xl" action="primary" onPress={onSearch}>
+            {isLoading && <ButtonSpinner />}
+            {!isLoading && <ButtonIcon as={SearchIcon} />}
           </Button>
         </View>
 
@@ -53,7 +73,7 @@ export default function App() {
           </View>
         )}
 
-        {!isLoading && pokemons.length === 0 && (
+        {!isLoading && error && (
           <Error
             title="Nenhum Pokémon encontrado."
             description="Parece que esse Pokémon está escondido em outra região."
@@ -69,15 +89,19 @@ export default function App() {
             columnWrapperStyle={{ gap: 16 }}
             contentContainerStyle={{ gap: 16 }}
             ListFooterComponent={
-              <Button
-                variant="solid"
-                action="primary"
-                className="mt-4"
-                onPress={getPokemons}
-              >
-                {isLoading && <ButtonSpinner />}
-                {!isLoading && <ButtonText>Carregar mais</ButtonText>}
-              </Button>
+              <>
+                {pokemons.length > 1 && !isLastPage && (
+                  <Button
+                    variant="solid"
+                    action="primary"
+                    className="mt-4"
+                    onPress={getPokemons}
+                  >
+                    {isLoading && <ButtonSpinner />}
+                    {!isLoading && <ButtonText>Carregar mais</ButtonText>}
+                  </Button>
+                )}
+              </>
             }
             renderItem={({ item }) => {
               const { id, type } = getParsedDetails(item);
