@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { FlatList, Image, Text, View } from "react-native";
+import { FlatList, Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import {
@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/button";
 import { CloseIcon, SearchIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { Error } from "@/components/custom/Error";
 
@@ -68,9 +70,22 @@ export default function App() {
         </View>
 
         {isLoading && pokemons.length === 0 && (
-          <View>
-            <Text>loading...</Text>
-          </View>
+          <>
+            <View className="flex-row mt-4 gap-4">
+              <Skeleton className="flex-1 h-40 rounded-xl" />
+              <Skeleton className="flex-1 h-40 rounded-xl" />
+            </View>
+
+            <View className="flex-row mt-4 gap-4">
+              <Skeleton className="flex-1 h-40 rounded-xl" />
+              <Skeleton className="flex-1 h-40 rounded-xl" />
+            </View>
+
+            <View className="flex-row mt-4 gap-4">
+              <Skeleton className="flex-1 h-40 rounded-xl" />
+              <Skeleton className="flex-1 h-40 rounded-xl" />
+            </View>
+          </>
         )}
 
         {!isLoading && error && (

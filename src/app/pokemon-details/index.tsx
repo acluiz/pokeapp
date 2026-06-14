@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeftIcon, ArrowRightIcon, Icon } from "@/components/ui/icon";
 import { Text } from "@/components/ui/text";
 
+import { Loader } from "@/components/custom/Loader";
+
 import { POKEMON_TYPE_COLORS } from "@/constants/pokemon-types";
 
 import { usePokemonDetails } from "./usePokemonDetails";
@@ -21,7 +23,7 @@ export default function Details() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      {isLoading && <Text>loading...</Text>}
+      {isLoading && <Loader />}
 
       {pokemon && (
         <LinearGradient

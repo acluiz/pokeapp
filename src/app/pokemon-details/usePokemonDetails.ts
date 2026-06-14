@@ -37,6 +37,8 @@ export function usePokemonDetails() {
         isLoading: false,
         error: (err as Error).message,
       });
+
+      router.replace("/");
     }
   };
 

@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeftIcon, Icon } from "@/components/ui/icon";
 import { Text } from "@/components/ui/text";
 
+import { Loader } from "@/components/custom/Loader";
+
 import { POKEMON_TYPE_COLORS } from "@/constants/pokemon-types";
 
 import { useMoveDetails } from "./useMoveDetails";
@@ -27,7 +29,7 @@ export default function MovementDetails() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      {isLoading && <Text>loading...</Text>}
+      {isLoading && <Loader />}
 
       {movement && (
         <LinearGradient

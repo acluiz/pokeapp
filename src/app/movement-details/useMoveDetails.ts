@@ -35,6 +35,8 @@ export function useMoveDetails() {
         isLoading: false,
         error: (err as Error).message,
       });
+
+      router.replace("/");
     }
   };
 
