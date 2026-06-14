@@ -73,6 +73,7 @@ export default function MovementDetails() {
               power={movement.power}
               pp={movement.pp}
               accuracy={movement.accuracy}
+              color={colors[0]}
             />
 
             <View className="mt-4">
